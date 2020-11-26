@@ -16,12 +16,13 @@ module.exports = {
       context.pubsub.publish(NEW_TODO, { todoAdded: newTodo });
       return newTodo;
     },
-    updateTodo: async (_, args) => {
+    updateTodo: async (_, args, context) => {
       const updateTodo = await Todo.findOneAndUpdate(
         { _id: args.todoId },
         { is_completed: args.is_completed },
         { new: true }
       );
+      context.pubsub.publish(UPDATED_TODO, { todoUpdated: updateTodo })
       return updateTodo;
     },
     deleteTodo: async (_, args) => {
@@ -35,5 +36,10 @@ module.exports = {
         return context.pubsub.asyncIterator(NEW_TODO);
       },
     },
+    todoUpdated: {
+      subscribe: (_, __, context) => {
+        return context.pubsub.asyncIterator(UPDATED_TODO);
+      }
+    }
   },
 };

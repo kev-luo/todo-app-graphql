@@ -12,6 +12,6 @@ const todoSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-todoSchema.indexes({ createdAt: 1}, {expiresAfterSeconds: 30})
+todoSchema.indexes({ createdAt: 1}, {expiresAfterSeconds: 60 * 60})
 
 module.exports = mongoose.model("Todo", todoSchema);
