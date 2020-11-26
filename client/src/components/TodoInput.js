@@ -29,7 +29,6 @@ export default function TodoInput() {
       query: GET_TODOS_QUERY,
     });
 
-    console.log(cachedTodos);
     cache.writeQuery({
       query: GET_TODOS_QUERY,
       data: {
