@@ -2,9 +2,9 @@ module.exports = `
   type Todo {
     id: ID!
     title: String!
+    user: User!
     is_completed: Boolean
     is_public: Boolean
-    user: User!
   }
   type User {
     id: ID!
@@ -14,6 +14,6 @@ module.exports = `
     getTodos: [Todo!]
   }
   type Mutation {
-    createTodo(title: String!, is_completed: Boolean, is_public: Boolean, userId: ID): Todo!
+    createTodo(title: String!, user: ID, is_completed: Boolean, is_public: Boolean): Todo!
   }
 `
