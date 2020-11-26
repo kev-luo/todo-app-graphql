@@ -3,6 +3,7 @@ module.exports = `
     id: ID!
     title: String!
     is_completed: Boolean!
+    createdAt: String
   }
   type Query {
     getTodos: [Todo!]
