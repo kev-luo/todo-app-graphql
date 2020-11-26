@@ -1,17 +1,16 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core";
+import { useMutation } from "@apollo/client";
 
-export default function Todos({ todos }) {
+import { UPDATE_TODO_MUTATION } from "../utils/graphql";
+
+export default function Todos({ todo }) {
   const classes = useStyles();
+  const [toggleCompleted] = useMutation(UPDATE_TODO_MUTATION);
+
   return (
     <div className={classes.root}>
-      {todos.map((todo) => {
-        return (
-          <div key={todo.id}>
-            <div>{todo.title}</div>
-          </div>
-        );
-      })}
+      <div>{todo.title}</div>
     </div>
   );
 }

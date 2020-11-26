@@ -17,10 +17,14 @@ export default function TodoContainer() {
     return <div>Error!</div>;
   }
 
+  const todosList = data?.getTodos.map((todo) => {
+    return <Todos key={todo.id} todo={todo} />;
+  });
+
   return (
     <div>
       <TodoInput />
-      <Todos todos={data?.getTodos} />
+      {todosList}
     </div>
   );
 }

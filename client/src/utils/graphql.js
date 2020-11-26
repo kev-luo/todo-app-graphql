@@ -1,4 +1,4 @@
-import { gql } from '@apollo/client';
+import { gql } from "@apollo/client";
 
 export const GET_TODOS_QUERY = gql`
   {
@@ -9,7 +9,7 @@ export const GET_TODOS_QUERY = gql`
       createdAt
     }
   }
-`
+`;
 
 export const CREATE_TODO_MUTATION = gql`
   mutation createTodo($title: String!) {
@@ -19,4 +19,14 @@ export const CREATE_TODO_MUTATION = gql`
       is_completed
     }
   }
-`
+`;
+
+export const UPDATE_TODO_MUTATION = gql`
+  mutation updateTodo($todoId: ID!, $is_completed: Boolean) {
+    updateTodo(todoId: $todoId, is_completed: $is_completed) {
+      id
+      title
+      is_completed
+    }
+  }
+`;
