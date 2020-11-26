@@ -8,7 +8,7 @@ export default function TodoInput() {
   const [todo, setTodo] = useState(initialState);
 
   const [addTodo] = useMutation(CREATE_TODO_MUTATION, {
-    update: updateCache,
+    // update: updateCache,
     onCompleted: clearInput,
   });
 

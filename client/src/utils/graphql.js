@@ -36,3 +36,24 @@ export const DELETE_TODO_MUTATION = gql`
     deleteTodo(todoId: $todoId)
   }
 `
+export const NEW_TODO_SUBSCRIPTION = gql`
+  subscription {
+    todoAdded {
+      id
+      title
+      is_completed
+      createdAt
+    }
+  }
+`
+
+export const UPDATE_TODO_SUBSCRIPTION = gql`
+  subscription {
+    todoUpdated {
+      id
+      title
+      is_completed
+      createdAt
+    }
+  }
+`
