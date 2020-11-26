@@ -14,12 +14,12 @@ const server = new ApolloServer({
 mongoose
   .connect("mongodb://localhost/todo_app", {
     useNewUrlParser: true,
-    useFindAndModify: true,
+    useFindAndModify: false,
     useUnifiedTopology: true,
   })
   .then(() => {
     console.log("connected to db");
-    server.listen({ port: PORT });
+    return server.listen({ port: PORT });
   })
   .then((res) => {
     console.log(`server running on port ${res.url}`);

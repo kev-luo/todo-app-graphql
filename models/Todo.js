@@ -1,14 +1,13 @@
 const mongoose = require("mongoose");
+const Schema = mongoose.Schema;
 
 const todoSchema = new mongoose.Schema(
   {
     title: String,
-    user: {
-      type: Schema.Types.ObjectId,
-      ref: "User",
+    is_completed: {
+      type: Boolean,
+      default: false,
     },
-    is_completed: Boolean,
-    is_public: Boolean,
   },
   { timestamps: true }
 );
