@@ -13,4 +13,8 @@ module.exports = `
     updateTodo(todoId: ID!, is_completed: Boolean): Todo!
     deleteTodo(todoId: ID!): String!
   }
+  type Subscription {
+    todoAdded: Todo!
+    todoUpdated: Todo!
+  }
 `

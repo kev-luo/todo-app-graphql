@@ -7,9 +7,11 @@ const todoSchema = new mongoose.Schema(
     is_completed: {
       type: Boolean,
       default: false,
-    },
+    }
   },
   { timestamps: true }
 );
+
+todoSchema.indexes({ createdAt: 1}, {expiresAfterSeconds: 30})
 
 module.exports = mongoose.model("Todo", todoSchema);
