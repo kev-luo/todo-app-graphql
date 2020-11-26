@@ -4,36 +4,42 @@ import { useMutation } from "@apollo/client";
 import { CREATE_TODO_MUTATION, GET_TODOS_QUERY } from "../utils/graphql";
 
 export default function TodoInput() {
-  const initialState = {title: ""}
+  const initialState = { title: "" };
   const [todo, setTodo] = useState(initialState);
 
-  const updateCache = (cache, { data }) => {
-    const cachedTodos = cache.readQuery({
-      query: GET_TODOS_QUERY
-    })
+  const [addTodo] = useMutation(CREATE_TODO_MUTATION, {
+    update: updateCache,
+    onCompleted: clearInput,
+  });
 
-    cache.writeQuery({
-      query: GET_TODOS_QUERY,
-      data: {
-        getTodos: [...cachedTodos.getTodos, data.createTodo]
-      }
-    })
-  }
-
-  const [addTodo] = useMutation(CREATE_TODO_MUTATION, { update: updateCache });
-
-  const handleChange = (e) => {
+  function handleChange(e) {
     const { name, value } = e.target;
     setTodo({
       [name]: value,
     });
   };
 
-  const handleSubmit = (e) => {
+  function handleSubmit(e) {
     e.preventDefault();
     addTodo({ variables: todo });
-    setTodo(initialState);
   };
+
+  function updateCache(cache, { data }) {
+    const cachedTodos = cache.readQuery({
+      query: GET_TODOS_QUERY,
+    });
+
+    cache.writeQuery({
+      query: GET_TODOS_QUERY,
+      data: {
+        getTodos: [...cachedTodos.getTodos, data.createTodo],
+      },
+    });
+  }
+
+  function clearInput() {
+    setTodo(initialState);
+  }
 
   return (
     <form onSubmit={handleSubmit}>
