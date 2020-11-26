@@ -30,3 +30,9 @@ export const UPDATE_TODO_MUTATION = gql`
     }
   }
 `;
+
+export const DELETE_TODO_MUTATION = gql`
+  mutation deleteTodo($todoId: ID!) {
+    deleteTodo(todoId: $todoId)
+  }
+`
