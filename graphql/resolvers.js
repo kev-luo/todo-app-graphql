@@ -20,5 +20,9 @@ module.exports = {
       );
       return updateTodo;
     },
+    deleteTodo: async (_, args) => {
+      const deleteTodo = await Todo.deleteOne({ _id: args.todoId });
+      return deleteTodo.deletedCount;
+    }
   },
 };

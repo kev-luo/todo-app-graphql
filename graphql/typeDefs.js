@@ -11,5 +11,6 @@ module.exports = `
   type Mutation {
     createTodo(title: String!): Todo!
     updateTodo(todoId: ID!, is_completed: Boolean): Todo!
+    deleteTodo(todoId: ID!): String!
   }
 `
